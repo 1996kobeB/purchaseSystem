@@ -13,6 +13,7 @@ import {
 } from 'ant-design-vue'
 
 import '@/assets/styles/antd.less'
+
 app.use(Button)
   .use(Input)
   .use(Form)

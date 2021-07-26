@@ -1,16 +1,20 @@
 <template>
   <div class="page">
-    {{ content }}
+    {{ getMoreContent }}
   </div>
 </template>
 <script>
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Page',
   computed: {
-    content () {
-      return this.$store.state.tab.content
-    }
+    ...mapGetters('tab', ['getMoreContent'])
+  },
+  methods: {
+    ...mapActions('tab', ['resetContent'])
+  },
+  mounted () {
+    this.resetContent()
   }
 }
 </script>

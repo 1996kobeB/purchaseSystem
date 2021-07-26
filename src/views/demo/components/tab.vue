@@ -2,7 +2,7 @@
   <ul class="tab-content">
     <li
       v-for="(item, index) in tabList"
-      @click="changeTab(index, item)"
+      @click="changeTab(index)"
       :class="['tab-list', activeIndex === index && 'active']"
       :key="index">
       {{ item }}
@@ -10,19 +10,19 @@
   </ul>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Tab',
-  data () {
-    return {
-      tabList: ['选项一', '选项二', '选项三', '选项四'],
-      activeIndex: 0
-    }
+  computed: {
+    ...mapState('tab', {
+      activeIndex: state => state.activeIndex,
+      tabList: state => state.tabList
+    })
   },
   methods: {
-    changeTab (index, item) {
-      this.activeIndex = index
-      this.$store.commit('tab/setContent', item)
-    }
+    ...mapMutations({
+      changeTab: 'tab/setContent'
+    })
   }
 }
 </script>
