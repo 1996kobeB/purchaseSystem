@@ -8,10 +8,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Page',
   computed: {
-    ...mapGetters('tab', ['getMoreContent'])
+    ...mapGetters('TabModule', ['getMoreContent'])
   },
   methods: {
-    ...mapActions('tab', ['resetContent'])
+    ...mapActions('TabModule', ['resetContent'])
+    // this.$store.
   },
   mounted () {
     this.resetContent()
@@ -28,7 +29,7 @@ export default {
     height: 500px;
     border: 1px solid #000;
     border-top: 0;
-    margin-left: 740px;
+    margin-left: 540px;
     font-size: 30px;
   }
 </style>

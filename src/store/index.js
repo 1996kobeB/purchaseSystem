@@ -1,18 +1,8 @@
-import { app } from '@/plugins/app'
-import Vuex from 'vuex'
-import tab from './modules/tab'
-app.use(Vuex)
+import { createStore } from 'vuex'
+import TabModule from './modules/tab.js'
 
-export const store = new Vuex.Store({
+export default createStore({
   modules: {
-    tab
+    TabModule
   }
 })
-
-// import { createStore } from 'vuex'
-
-// export default createStore({
-//    modules: {
-//     tab
-// }
-// })

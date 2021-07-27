@@ -6,7 +6,8 @@
 
 export default {
   namespaced: true, // 避免模块冲突
-
+  // list/name
+  // user/name
   state: {
     tabList: ['选项一', '选项二', '选项三', '选项四'],
     activeIndex: 0
@@ -18,7 +19,7 @@ export default {
   },
   getters: {
     getMoreContent (state) {
-      return `这是${state.tabList[state.activeIndex]}`
+      return `${name}${state.tabList[state.activeIndex]}`
     }
   },
   actions: {

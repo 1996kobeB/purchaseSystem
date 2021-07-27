@@ -14,14 +14,12 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Tab',
   computed: {
-    ...mapState('tab', {
-      activeIndex: state => state.activeIndex,
-      tabList: state => state.tabList
-    })
+    ...mapState('TabModule', ['activeIndex', 'tabList'])
+    // this.$store.state.TabModule.
   },
   methods: {
     ...mapMutations({
-      changeTab: 'tab/setContent'
+      changeTab: 'TabModule/setContent'
     })
   }
 }
@@ -29,7 +27,7 @@ export default {
 <style lang="less" scoped>
   .tab-content{
     display: flex;
-    margin: 80px 0 0 700px;
+    margin: 80px 0 0 500px;
     .tab-list{
       width: 125px;
       height: 50px;
