@@ -5,8 +5,8 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/standard'
+    "plugin:vue/recommended",
+    '@vue/standard',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -14,6 +14,7 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'space-before-function-paren': ['error', 'always'],
   }
 }

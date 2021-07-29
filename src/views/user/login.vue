@@ -7,21 +7,32 @@
       @finishFailed="handleFinishFailed"
     >
       <a-form-item>
-        <a-input v-model:value="formState.user" placeholder="Username">
-          <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+        <a-input
+          v-model="formState.user"
+          placeholder="Username"
+        >
+          <template #prefix>
+            <UserOutlined style="color: rgba(0, 0, 0, 0.25)" />
+          </template>
         </a-input>
       </a-form-item>
       <a-form-item>
-        <a-input v-model:value="formState.password" type="password" placeholder="Password">
-          <template #prefix><LockOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+        <a-input
+          v-model="formState.password"
+          type="password"
+          placeholder="Password"
+        >
+          <template #prefix>
+            <LockOutlined style="color: rgba(0, 0, 0, 0.25)" />
+          </template>
         </a-input>
       </a-form-item>
       <a-form-item>
         <a-button
-          @click="jumpToDemo"
           type="primary"
           html-type="submit"
           :disabled="formState.user === '' || formState.password === ''"
+          @click="jumpToDemo"
         >
           Log in
         </a-button>
@@ -35,6 +46,10 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 
 export default {
   name: 'Login',
+  components: {
+    UserOutlined,
+    LockOutlined
+  },
   data () {
     return {
       formState: {
@@ -53,10 +68,6 @@ export default {
     jumpToDemo () {
       this.$router.push({ name: 'demo' })
     }
-  },
-  components: {
-    UserOutlined,
-    LockOutlined
   }
 }
 </script>

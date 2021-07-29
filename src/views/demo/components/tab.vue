@@ -2,9 +2,10 @@
   <ul class="tab-content">
     <li
       v-for="(item, index) in tabList"
-      @click="changeTab(index)"
+      :key="index"
       :class="['tab-list', activeIndex === index && 'active']"
-      :key="index">
+      @click="changeTab(index)"
+    >
       {{ item }}
     </li>
   </ul>

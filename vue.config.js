@@ -27,7 +27,7 @@ const config = {
         plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)]
     },
     // 设置在开发环境下每次保存代码时都开启 eslint 验证
-    lintOnSave: !IS_PRODOUCT,
+    lintOnSave: false,
     css: {
         loaderOptions: {
             less: {
