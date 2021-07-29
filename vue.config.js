@@ -6,7 +6,9 @@ const config = {
     publicPath: process.env.BASE_URL,
     devServer: {
         port: 3000,
-        disableHostCheck: true,
+        open: true,
+        sockHost: 'localhost',
+		    disableHostCheck: true, //webpack4.0 开启热更新
         // 代理
         // proxy: {
 
@@ -36,10 +38,9 @@ const config = {
         },
     },
     chainWebpack: config => {
-        // 修复HMR
-        config.resolve.symlinks(true)
-
-        // 配置别名
+      // 修复HMR
+      config.resolve.symlinks(true)
+      // 配置别名
         config.resolve.alias.set('@', resolve('src'))
     },
 }
