@@ -8,11 +8,14 @@ const config = {
         port: 3000,
         open: true,
         sockHost: 'localhost',
-		    disableHostCheck: true, //webpack4.0 开启热更新
+		disableHostCheck: true, //webpack4.0 开启热更新
         // 代理
-        // proxy: {
-
-        // },
+        proxy: {
+            '/api-gateway': {
+                target: 'http://10.26.0.15:18080',
+                changeOrigin: true
+            }
+        },
     },
     productionSourceMap: false,
     configureWebpack: {

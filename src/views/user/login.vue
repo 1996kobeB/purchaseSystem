@@ -8,7 +8,7 @@
     >
       <a-form-item>
         <a-input
-          v-model="formState.user"
+          v-model:value="formState.username"
           placeholder="Username"
         >
           <template #prefix>
@@ -18,7 +18,7 @@
       </a-form-item>
       <a-form-item>
         <a-input
-          v-model="formState.password"
+          v-model:value="formState.password"
           type="password"
           placeholder="Password"
         >
@@ -32,7 +32,7 @@
           type="primary"
           html-type="submit"
           :disabled="formState.user === '' || formState.password === ''"
-          @click="jumpToDemo"
+          @click="handkeSubmit"
         >
           Log in
         </a-button>
@@ -43,6 +43,8 @@
 
 <script>
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+import useAxios from '@/hooks/axios'
+import { user } from '@/api'
 
 export default {
   name: 'Login',
@@ -53,8 +55,13 @@ export default {
   data () {
     return {
       formState: {
-        user: '',
-        password: ''
+        username: '',
+        password: '',
+        grant_type: 'password'
+      },
+      commonPageReq: {
+        pageNo: 0,
+        pageSize: 1
       }
     }
   },
@@ -65,8 +72,10 @@ export default {
     handleFinishFailed (errors) {
       console.log(errors)
     },
-    jumpToDemo () {
-      this.$router.push({ name: 'demo' })
+    handkeSubmit () {
+      useAxios.post(user.userAuth, this.formState).then(res => {
+        console.log(res)
+      })
     }
   }
 }
