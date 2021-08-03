@@ -1,5 +1,5 @@
 export const user = {
-  userAuth: '/yyds-admin/api/v1/users/login'
+  userAuth: '/yiwu-admin/api/v1/users/login' // 用户登录
 }
 
 Object.freeze(user)

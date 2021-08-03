@@ -12,7 +12,7 @@ const config = {
         // 代理
         proxy: {
             '/api-gateway': {
-                target: 'http://10.26.0.15:18080',
+                target: 'http://10.26.0.15:18084',
                 changeOrigin: true
             }
         },

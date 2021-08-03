@@ -73,8 +73,15 @@ export default {
       console.log(errors)
     },
     handkeSubmit () {
-      useAxios.post(user.userAuth, this.formState).then(res => {
-        console.log(res)
+      const { promiseify, data } = useAxios(user.userAuth, {
+        method: 'POST',
+        data: this.formState
+      })
+      promiseify.then(() => {
+        if (+data.value.code !== 200) {
+          return false
+        }
+        alert('登录成功')
       })
     }
   }

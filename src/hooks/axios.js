@@ -65,7 +65,40 @@ const errorHandler = (status, other) => {
       console.log(other)
   }
 }
-export default http
-// export default function useAxios {
-//   const
-// }
+
+/**
+ *  Usage
+ *
+ * const { promiseify, data } = useAxios(url,{
+ *  method:'GET'||'POST',
+ *  data:{...}
+ * })
+ * promiseify.then(()=>console.log(data))
+ */
+export default function useAxios (url, config) {
+  const response = {}
+  const data = {}
+  let finished = false
+  let error = {}
+
+  const promiseify = http
+    .request({ url, ...config })
+    .then(res => {
+      response.value = res
+      data.value = res.data
+
+      finished = true
+    })
+    .catch(err => {
+      error = err
+      finished = true
+    })
+
+  return {
+    promiseify,
+    response,
+    data,
+    error,
+    finished
+  }
+}
