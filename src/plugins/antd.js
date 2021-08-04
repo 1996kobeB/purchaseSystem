@@ -9,7 +9,8 @@ import {
   Button,
   Input,
   Form,
-  Alert
+  Alert,
+  message
 } from 'ant-design-vue'
 
 import '@/assets/styles/antd.less'
@@ -18,3 +19,4 @@ app.use(Button)
   .use(Input)
   .use(Form)
   .use(Alert)
+  .use(message)

@@ -6,7 +6,7 @@
  */
 
 import axios from 'axios'
-
+import { message } from 'ant-design-vue'
 // 创建axios实例
 const http = axios.create({
   // 允许携带cookie
@@ -34,12 +34,13 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   // 请求成功
   res => res.status === 200 ? Promise.resolve(res) : Promise.reject(res),
+
   // 请求失败
   error => {
     const { response } = error
 
     if (response) {
-      errorHandler(response.status, response.data.message)
+      errorHandler(response)
       return Promise.reject(response)
     } else {
       // 处理断网的状态
@@ -53,52 +54,21 @@ http.interceptors.response.use(
 )
 
 // 错误处理
-const errorHandler = (status, other) => {
+const errorHandler = (response) => {
+  const { data, status } = response
   switch (status) {
     case 401:
+      message.error('未授权，请重新登录')
       break
     case 403:
+      message.error('拒绝访问')
       break
     case 404:
+      message.error('资源未找到')
       break
     default:
-      console.log(other)
+      message.error(data.message)
   }
 }
 
-/**
- *  Usage
- *
- * const { promiseify, data } = useAxios(url,{
- *  method:'GET'||'POST',
- *  data:{...}
- * })
- * promiseify.then(()=>console.log(data))
- */
-export default function useAxios (url, config) {
-  const response = {}
-  const data = {}
-  let finished = false
-  let error = {}
-
-  const promiseify = http
-    .request({ url, ...config })
-    .then(res => {
-      response.value = res
-      data.value = res.data
-
-      finished = true
-    })
-    .catch(err => {
-      error = err
-      finished = true
-    })
-
-  return {
-    promiseify,
-    response,
-    data,
-    error,
-    finished
-  }
-}
+export default http

@@ -32,7 +32,7 @@
           type="primary"
           html-type="submit"
           :disabled="formState.user === '' || formState.password === ''"
-          @click="handkeSubmit"
+          @click="handleSubmit"
         >
           Log in
         </a-button>
@@ -43,11 +43,13 @@
 
 <script>
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import useAxios from '@/hooks/axios'
+import axios from '@/hooks/axios'
 import { user } from '@/api'
+import { message } from 'ant-design-vue'
 
 export default {
   name: 'Login',
+
   components: {
     UserOutlined,
     LockOutlined
@@ -58,10 +60,6 @@ export default {
         username: '',
         password: '',
         grant_type: 'password'
-      },
-      commonPageReq: {
-        pageNo: 0,
-        pageSize: 1
       }
     }
   },
@@ -72,17 +70,16 @@ export default {
     handleFinishFailed (errors) {
       console.log(errors)
     },
-    handkeSubmit () {
-      const { promiseify, data } = useAxios(user.userAuth, {
-        method: 'POST',
-        data: this.formState
-      })
-      promiseify.then(() => {
-        if (+data.value.code !== 200) {
-          return false
-        }
-        alert('登录成功')
-      })
+
+    async handleSubmit () {
+      const { data } = await axios.post(user.userAuth, this.formState
+      )
+
+      if (+data.code !== 200) {
+        message.error(data.message || '请求失败')
+        return false
+      }
+      message.success('登录成功').then(this.$router.push({ name: 'demo' }))
     }
   }
 }
