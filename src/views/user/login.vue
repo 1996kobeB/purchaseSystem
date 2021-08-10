@@ -9,7 +9,7 @@
       <a-form-item>
         <a-input
           v-model:value="formState.username"
-          placeholder="Username"
+          placeholder="admin"
         >
           <template #prefix>
             <UserOutlined style="color: rgba(0, 0, 0, 0.25)" />
@@ -20,7 +20,7 @@
         <a-input
           v-model:value="formState.password"
           type="password"
-          placeholder="Password"
+          placeholder="123456"
         >
           <template #prefix>
             <LockOutlined style="color: rgba(0, 0, 0, 0.25)" />
@@ -43,8 +43,8 @@
 
 <script>
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import axios from '@/hooks/axios'
-import { user } from '@/api'
+
+import { login } from '@/api'
 import { message } from 'ant-design-vue'
 
 export default {
@@ -72,7 +72,7 @@ export default {
     },
 
     async handleSubmit () {
-      const { data } = await axios.post(user.userAuth, this.formState
+      const { data } = await login(this.formState
       )
 
       if (+data.code !== 200) {
