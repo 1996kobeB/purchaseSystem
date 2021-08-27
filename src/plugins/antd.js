@@ -10,7 +10,10 @@ import {
   Input,
   Form,
   Alert,
-  message
+  message,
+  Table,
+  Tag,
+  Layout
 } from 'ant-design-vue'
 
 import '@/assets/styles/antd.less'
@@ -20,3 +23,6 @@ app.use(Button)
   .use(Form)
   .use(Alert)
   .use(message)
+  .use(Table)
+  .use(Tag)
+  .use(Layout)
